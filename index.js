@@ -16,7 +16,7 @@ app.use("/static", express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 //connection to db
-// mongoose.set("useFindAndModify", false);
+mongoose.set("useFindAndModify", false);
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log("Connected to db!");
     // server should only run after the connection is made
