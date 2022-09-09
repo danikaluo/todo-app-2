@@ -2,6 +2,7 @@
 
 <head>
     <title>Todo App</title>
+    <!-- Add style -->
     <link rel="stylesheet" href="/static/stylesheets/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Candal|Chewy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -17,9 +18,11 @@
                 <button type="submit"><span class="fas fa-plus"></span></button>
             </form>
             <ul class="todo-list">
+                <!-- Embedded javascript to edit tasks -->
                 <% todoTasks.forEach(details => { %>
                     <% if (details._id == idTask) { %>
                         <li class="todo-list-item">
+                            <!-- Form for editing tasks -->
                             <form action="/edit/<%= details._id %>" method="POST">
                                 <input type="text" value="<%= details.content %>" name="content">
                                 <button type="submit">Confirm</button>
@@ -27,6 +30,7 @@
                             </form>
                         </li>
                     <% } else { %>
+                        <!-- Display list items -->
                         <li class="todo-list-item">
                             <div class="todo-list-item-name"><%= details.content %></div>
                             <a href="/edit/<%= details._id %>" class="edit"> <span class="fas fa-edit"></span>

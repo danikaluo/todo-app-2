@@ -2,6 +2,7 @@
 
 <head>
     <title>Todo App</title>
+    <!-- Add style sheet -->
     <link rel="stylesheet" href="/static/stylesheets/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Candal|Chewy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -9,20 +10,25 @@
 </head>
 
 <body>
+    <!-- Create container for todo list -->
     <div class="todo-container">
         <h2>To-Do List</h2>
+        <!-- Create input field for user to add items -->
         <div class="todo">
             <form action="" method="POST" class="todo-header">
                 <input type="text" name="content">
                 <button type="submit"><span class="fas fa-plus"></span></button>
             </form>
+            <!-- Display items in users todo list -->
             <ul class="todo-list">
                 <% todoTasks.forEach(details => { %>
                 <li class="todo-list-item">
                     <div class="todo-list-item-name"><%= details.content %></div>
+                    <!-- Option to edit list item -->
                     <a href="/edit/<%= details._id %>" class="edit">
                         <span class="fas fa-edit"></span>
                     </a>
+                    <!-- Option to remove list item -->
                     <a href="/remove/<%= details._id %>" class="remove">
                         <span class="fas fa-times"></span>
                     </a>

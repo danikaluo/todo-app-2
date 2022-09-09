@@ -15,11 +15,12 @@ app.use("/static", express.static("public"));
 // extract the data from the form by adding her to the body property of the request
 app.use(express.urlencoded({ extended: true }));
 
-//connection to db
+// connection to db
 mongoose.set("useFindAndModify", false);
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log("Connected to db!");
     // server should only run after the connection is made
+    // bind  web server to the dynamic PORT environment variable set by heroku
     app.listen(process.env.PORT || 3000, () => console.log("Server Up and running"));
 });
 
@@ -47,14 +48,14 @@ app.post('/',async (req, res) => {
     }
 });
 
-// UPDATE
+// UPDATE task
 app
     .route("/edit/:id")
     .get((req, res) => {
         // find our id
         const id = req.params.id;
         TodoTask.find({}, (err, tasks) => {
-            // render the new template
+            // render the new template after editing task list
             res.render("todoEdit.ejs", { todoTasks: tasks, idTask: id });
         });
     })
@@ -67,7 +68,7 @@ app
         });
     });
 
-// DELETE
+// DELETE tasks from list
 app.route("/remove/:id").get((req, res) => {
     const id = req.params.id;
     TodoTask.findByIdAndRemove(id, err => {
