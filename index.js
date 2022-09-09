@@ -20,7 +20,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log("Connected to db!");
     // server should only run after the connection is made
-    app.listen(3000, () => console.log("Server Up and running"));
+    app.listen(process.env.PORT, () => console.log("Server Up and running"));
 });
 
 // view engine configuration
